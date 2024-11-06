@@ -28,7 +28,7 @@ class TaskItem extends StatelessWidget {
                 child: Text(
                   'Details Of Task',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 18,
                     color: Colors.white,
                   ),
                 ),
@@ -38,7 +38,7 @@ class TaskItem extends StatelessWidget {
                 icon: const Icon(
                   Icons.done,
                   color: Colors.white,
-                  size: 30,
+                  size: 35,
                 ),
               ),
             ),
