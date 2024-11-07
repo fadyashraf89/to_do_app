@@ -15,7 +15,7 @@ class CustomAppBar extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.bottomCenter,
-            child: Text(title, style: TextStyle(
+            child: Text(title, style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold
             ),),

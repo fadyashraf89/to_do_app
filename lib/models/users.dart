@@ -10,7 +10,7 @@ class UsersData{
   });
 }
 List<UsersData> users = [
-  UsersData(email: 'fady@gmail.com', password: '123456'),
+  UsersData(email: 'fadyashraf89@gmail.com', password: '123456'),
   UsersData(email: 'abdelrahman@gmail.com', password: '1234567'),
   UsersData(email: 'hassan@gmail.com', password: '12345678'),
   UsersData(email: 'tharwat@gmail.com', password: '1234567'),

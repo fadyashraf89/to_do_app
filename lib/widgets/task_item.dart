@@ -1,8 +1,14 @@
 import "package:flutter/material.dart";
-class TaskItem extends StatelessWidget {
+import "package:to_do_app/screens/EditTask.dart";
+class TaskItem extends StatefulWidget {
   const TaskItem({super.key});
 
   @override
+  State<TaskItem> createState() => _TaskItemState();
+}
+
+class _TaskItemState extends State<TaskItem> {
+  bool? check = false;  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -11,12 +17,12 @@ class TaskItem extends StatelessWidget {
           color: Colors.black. withOpacity(0.5),
           borderRadius: BorderRadius.circular(16),
         ),
-        padding: const EdgeInsets.only(left: 16, top: 24, bottom: 24),
+        padding: const EdgeInsets.only(left: 16, top: 10, bottom: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            ListTile(
-              title: const Text(
+            const ListTile(
+              title: Text(
                 'Task',
                 style: TextStyle(
                   fontSize: 26,
@@ -24,7 +30,7 @@ class TaskItem extends StatelessWidget {
                 ),
               ),
               subtitle: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text(
                   'Details Of Task',
                   style: TextStyle(
@@ -33,17 +39,39 @@ class TaskItem extends StatelessWidget {
                   ),
                 ),
               ),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.done,
-                  color: Colors.white,
-                  size: 35,
-                ),
-              ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+            Row(
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black.withOpacity(0.5),
+                    foregroundColor: Colors.white,
+                  ),
+                  child: const Text("Edit Task"),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return const EditTask();
+                      }),
+                    );
+                  },
+                ),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black.withOpacity(0.5),
+                    foregroundColor: Colors.white,
+                  ),
+                  child: const Text("Mark as done"),
+                  onPressed: (){
+
+                  },
+                )
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.only(right: 16, top: 10),
               child: Text(
                 'May 21,2022',
                 style: TextStyle(

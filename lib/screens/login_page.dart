@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: PreferredSize(
+      appBar: const PreferredSize(
         preferredSize: Size.fromHeight(50.0),
         child: CustomAppBar(
           title: "Login",
@@ -52,6 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                     if (value!.isEmpty) {
                       return 'Please Enter Your Email';
                     }
+                    return null;
                   },
                   controller: emailController,
                   decoration: InputDecoration(
@@ -63,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                             BorderSide(color: Colors.black.withOpacity(0.5))),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.black, width: 2)),
+                        borderSide: const BorderSide(color: Colors.black, width: 2)),
                   ),
                 ),
                 const SizedBox(
@@ -74,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                     if (value!.isEmpty) {
                       return 'Please Enter Your Password';
                     }
+                    return null;
                   },
                   controller: passwordController,
                   obscureText: !showPassword,
@@ -99,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                             BorderSide(color: Colors.black.withOpacity(0.5))),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.black, width: 2)),
+                        borderSide: const BorderSide(color: Colors.black, width: 2)),
                   ),
                 ),
                 const SizedBox(
@@ -119,40 +121,39 @@ class _LoginPageState extends State<LoginPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                TasksPage(), // Pass the email to home screen
-                          ),
+                                const TasksPage(), // Pass the email to home screen
+                          )
                         );
+                        print('Email is valid');
                       } else {
                         SnackBar snackBar = const SnackBar(
                           content: Text('Login Failed'),
                           backgroundColor: Colors.red,
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        print('Email is invalid');
                       }
 
-                      print('Email is valid');
-                    } else {
-                      print('Email is invalid');
                     }
                   },
-                  child: const Text('Login'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(width, height * 0.06),
                     backgroundColor: Colors.black.withOpacity(0.5),
                     foregroundColor: Colors.white,
                   ),
+                  child: const Text('Login'),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have an account ?"),
+                    const Text("Don't have an account ?"),
                     TextButton(
                       onPressed: (){
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                SignUpPage(), // Pass the email to home screen
+                                const SignUpPage(), // Pass the email to home screen
                           ),
                         );
                       }, child: Text("Register Now", style: TextStyle(

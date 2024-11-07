@@ -24,7 +24,7 @@ class _SignUpPageState extends State<SignUpPage> {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: PreferredSize(
+      appBar: const PreferredSize(
         preferredSize: Size.fromHeight(50.0),
         child: CustomAppBar(
           title: "Sign Up",
@@ -48,6 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     if (value!.isEmpty) {
                       return 'Please Enter Your Email';
                     }
+                    return null;
                   },
                   controller: emailController,
                   decoration: InputDecoration(
@@ -59,7 +60,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         BorderSide(color: Colors.black.withOpacity(0.5))),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.black, width: 2)),
+                        borderSide: const BorderSide(color: Colors.black, width: 2)),
                   ),
                 ),
                 const SizedBox(
@@ -70,6 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     if (value!.isEmpty) {
                       return 'Please Enter Your Password';
                     }
+                    return null;
                   },
                   controller: passwordController,
                   obscureText: !showPassword,
@@ -95,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         BorderSide(color: Colors.black.withOpacity(0.5))),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(color: Colors.black, width: 2)),
+                        borderSide: const BorderSide(color: Colors.black, width: 2)),
                   ),
                 ),
                 const SizedBox(
@@ -116,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                TasksPage(), // Pass the email to home screen
+                                const TasksPage(), // Pass the email to home screen
                           ),
                         );
                       } else {
@@ -132,17 +134,17 @@ class _SignUpPageState extends State<SignUpPage> {
                       print('Email is invalid');
                     }
                   },
-                  child: const Text('Login'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(width, height * 0.06),
                     backgroundColor: Colors.black.withOpacity(0.5),
                     foregroundColor: Colors.white,
                   ),
+                  child: const Text('Login'),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Already have an account ?"),
+                    const Text("Already have an account ?"),
                     TextButton(
                       onPressed: (){
                         Navigator.pop(context);

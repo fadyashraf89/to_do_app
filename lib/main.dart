@@ -1,7 +1,21 @@
 import "package:flutter/material.dart";
+import "package:to_do_app/Cubits/add_task_cubit/AddTaskCubit.dart";
 import "package:to_do_app/screens/TasksPage.dart";
 import "package:to_do_app/screens/login_page.dart";
-void main(){
+import 'package:hive_flutter/adapters.dart';
+import "SimpleBlocObserver.dart";
+import "models/TaskModel.dart";
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+void main() async{
+  await Hive.initFlutter();
+  if (!Hive.isAdapterRegistered(1)) {
+    Hive.registerAdapter(TaskModelAdapter());
+  }
+  Bloc.observer = SimpleBlocObserver();
+  await Hive.openBox<TaskModel>("Tasks_Box");
+
   runApp(const TodoApp());
 }
 class TodoApp extends StatelessWidget {
@@ -9,15 +23,21 @@ class TodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: LoginPage.id,
-      routes: {
-        LoginPage.id: (context) => const LoginPage(),
-        TasksPage.id: (context) => const TasksPage(),
-
-      },      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.light
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AddTaskCubit())
+      ],
+      child: MaterialApp(
+        initialRoute: LoginPage.id,
+        routes: {
+          LoginPage.id: (context) => const LoginPage(),
+          TasksPage.id: (context) => const TasksPage(),
+      
+        },
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          brightness: Brightness.light
+        ),
       ),
     );
   }
