@@ -1,5 +1,8 @@
+// ignore_for_file: unused_import
+
 import "package:flutter/material.dart";
 import "package:to_do_app/Cubits/add_task_cubit/AddTaskCubit.dart";
+import "package:to_do_app/Cubits/tasks_cubit/tasks_cubit.dart";
 import "package:to_do_app/screens/TasksPage.dart";
 import "package:to_do_app/screens/login_page.dart";
 import 'package:hive_flutter/adapters.dart';
@@ -23,11 +26,8 @@ class TodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => AddTaskCubit())
-      ],
-      child: MaterialApp(
+    return BlocProvider(create: (context) => TasksCubit(),
+    child: MaterialApp(
         initialRoute: LoginPage.id,
         routes: {
           LoginPage.id: (context) => const LoginPage(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/Cubits/add_task_cubit/AddTaskCubit.dart';
 import 'package:to_do_app/Cubits/add_task_cubit/add_task_state.dart';
+import 'package:to_do_app/Cubits/tasks_cubit/tasks_cubit.dart';
 
 import 'AddTaskForm.dart';
 
@@ -28,7 +29,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   print('failed  ${state.errorMessage}');
                 }
                 if (state is AddTaskSuccess) {
-                  print("State et3amalet");
+                  BlocProvider.of<TasksCubit>(context).fetchAllTasks();
                   Navigator.pop(context);
                 }
               },

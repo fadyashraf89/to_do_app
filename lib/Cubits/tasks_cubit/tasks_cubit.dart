@@ -7,14 +7,16 @@ part 'tasks_state.dart';
 
 class TasksCubit extends Cubit<TasksState> {
   TasksCubit() : super(TasksInitial());
+  List<TaskModel>? tasks;
 
   fetchAllTasks() async {
-    try {
-      var TasksBox = Hive.box<TaskModel>("Tasks_Box");
-      List<TaskModel> tasks = TasksBox.values.toList();
-      emit(TasksSuccess(tasks));
-    } catch (e) {
-      emit(TasksFailed(e.toString()));
+    var TasksBox = Hive.box<TaskModel>("Tasks_Box");
+    tasks = TasksBox.values.toList();
+    if (tasks!.isEmpty) {
+      emit(TasksEmpty());
+    } else {
+      emit(TasksSuccess());
     }
+
   }
 }
